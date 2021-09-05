@@ -13,13 +13,15 @@ public class FriendController {
 	ArrayList<Friend> friends = new ArrayList<Friend>();
 	
 	@GetMapping("/index")
-	public String formAccess(Model model) {
+	public String getIndex(Model model) {
+		model.addAttribute("friends", friends);
 		model.addAttribute("friend", new Friend());
 		return "index";
 	}
 	
 	@PostMapping("/lul")
-	public String FullNameSubmit(@ModelAttribute Friend fnd, Model model) {
-		return "index";
+	public String postLul(@ModelAttribute Friend fnd, Model model) {
+		friends.add(fnd);
+		return getIndex(model);
 	}
 }
